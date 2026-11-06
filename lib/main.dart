@@ -28,12 +28,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+  void _clickButton() {
+    debugPrint("Tombol di klik");
   }
 
   @override
@@ -82,39 +78,43 @@ class _MyHomePageState extends State<MyHomePage> {
             Container(
               alignment: Alignment.center,
               width: 400,
-              color: Colors.grey,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+              ),
+
               height: 400,
               padding: const EdgeInsets.all(16),
               margin: const EdgeInsets.all(10),
               child: Column(
                 mainAxisAlignment: .center,
-                spacing: 1,
+                spacing: 10,
                 children: [
-                  Text(
-                    'Tekan tombol untuk menambah angka',
-                    textAlign: TextAlign.center,
-                  ),
-                  Text(
-                    '$_counter',
-                    style: Theme.of(context).textTheme.headlineMedium,
-                    textAlign: TextAlign.center,
+                  Text('Input text', textAlign: TextAlign.center,),
+                  Row(
+                    spacing: 2,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: 'Nama',
+                            hintText: "Massukan nama anda...",
+                          ),
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: _clickButton,
+                        icon: const Icon(Icons.add),
+                        tooltip: "Add name",
+                      ),
+                    ],
                   ),
                 ],
               ),
-              //child: const Text('Tekan tombol sampai angka bertambah'),
-              //            child: Text(
-              //             '$_counter',
-              //           style: Theme.of(context).textTheme.headlineMedium,
-              //        ),
             ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        backgroundColor: Colors.blue,
-        child: const Icon(Icons.add),
       ),
     );
   }
