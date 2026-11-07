@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,8 +29,12 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  void _clickButton() {
-    debugPrint("Tombol di klik");
+  final myController = TextEditingController();
+
+  @override
+  void dispose() {
+    myController.dispose();
+    super.dispose();
   }
 
   @override
@@ -87,15 +92,24 @@ class _MyHomePageState extends State<MyHomePage> {
               margin: const EdgeInsets.all(10),
               child: Column(
                 mainAxisAlignment: .center,
-                spacing: 10,
+                spacing: 20,
                 children: [
-                  Text('Input text', textAlign: TextAlign.center,),
+                  Text(
+                    'Input text',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.inter(
+                      fontSize: 30,
+                      fontStyle: FontStyle.normal,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
                   Row(
                     spacing: 2,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Expanded(
                         child: TextField(
+                          controller: myController,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: 'Nama',
@@ -104,7 +118,20 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
                       IconButton(
-                        onPressed: _clickButton,
+                        onPressed: () {
+                          final snackbar = SnackBar(
+                            content: Text(
+                              '${myController.text == "" ? "Silahkan isi nama anda" : myController.text}',
+                            ),
+                            action: SnackBarAction(
+                              label: "Oke",
+                              onPressed: () {
+                                // Action
+                              },
+                            ),
+                          );
+                          ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                        },
                         icon: const Icon(Icons.add),
                         tooltip: "Add name",
                       ),
