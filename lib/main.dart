@@ -39,105 +39,132 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: Builder(
-          builder: (BuildContext context) {
-            return IconButton(
-              icon: const Icon(Icons.menu),
-              onPressed: () {
-                Scaffold.of(context).openDrawer();
-              },
-              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-            );
-          },
-        ),
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        appBar: AppBar(
+          bottom: const TabBar(
+            tabs: [
+              Tab(icon: Icon(Icons.home)),
+              Tab(icon: Icon(Icons.send)),
+              Tab(icon: Icon(Icons.settings)),
+            ],
+          ),
+          leading: Builder(
+            builder: (BuildContext context) {
+              return IconButton(
+                icon: const Icon(Icons.menu),
+                onPressed: () {
+                  Scaffold.of(context).openDrawer();
+                },
+                tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+              );
+            },
+          ),
 
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
 
-        title: Text(widget.title),
-      ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(color: Colors.blue),
-              child: Text('Drawer Header'),
-            ),
-            ListTile(
-              title: const Text('Item 1'),
-              onTap: () {
-                // Update the state of the app.
-                // ..
-              },
-            ),
-            ListTile(title: const Text('Item 2'), onTap: () {}),
-          ],
+          title: Text(widget.title),
         ),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: .center,
-          children: [
-            Container(
-              alignment: Alignment.center,
-              width: 400,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              const DrawerHeader(
+                decoration: BoxDecoration(color: Colors.blue),
+                child: Text('Drawer Header'),
               ),
-
-              height: 400,
-              padding: const EdgeInsets.all(16),
-              margin: const EdgeInsets.all(10),
+              ListTile(
+                title: const Text('Item 1'),
+                onTap: () {
+                  // Update the state of the app.
+                  // ..
+                },
+              ),
+              ListTile(title: const Text('Item 2'), onTap: () {}),
+            ],
+          ),
+        ),
+        body: TabBarView(
+          children: [
+            Center(
               child: Column(
                 mainAxisAlignment: .center,
-                spacing: 20,
                 children: [
-                  Text(
-                    'Input text',
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.inter(
-                      fontSize: 30,
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.w500,
+                  Container(
+                    alignment: Alignment.center,
+                    width: 400,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                  ),
-                  Row(
-                    spacing: 2,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Expanded(
-                        child: TextField(
-                          controller: myController,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Nama',
-                            hintText: "Massukan nama anda...",
+
+                    height: 400,
+                    padding: const EdgeInsets.all(16),
+                    margin: const EdgeInsets.all(10),
+                    child: Column(
+                      mainAxisAlignment: .center,
+                      spacing: 20,
+                      children: [
+                        Text(
+                          'Input text',
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.inter(
+                            fontSize: 30,
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
-                      ),
-                      IconButton(
-                        onPressed: () {
-                          final snackbar = SnackBar(
-                            content: Text(
-                              '${myController.text == "" ? "Silahkan isi nama anda" : myController.text}',
+                        Row(
+                          spacing: 2,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Expanded(
+                              child: TextField(
+                                controller: myController,
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(),
+                                  labelText: 'Nama',
+                                  hintText: "Massukan nama anda...",
+                                ),
+                              ),
                             ),
-                            action: SnackBarAction(
-                              label: "Oke",
+                            IconButton(
                               onPressed: () {
-                                // Action
+                                final snackbar = SnackBar(
+                                  content: Text(
+                                    '${myController.text == "" ? "Silahkan isi nama anda" : myController.text}',
+                                  ),
+                                  action: SnackBarAction(
+                                    label: "Oke",
+                                    onPressed: () {
+                                      // Action
+                                    },
+                                  ),
+                                );
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(snackbar);
                               },
+                              icon: const Icon(Icons.add),
+                              tooltip: "Add name",
                             ),
-                          );
-                          ScaffoldMessenger.of(context).showSnackBar(snackbar);
-                        },
-                        icon: const Icon(Icons.add),
-                        tooltip: "Add name",
-                      ),
-                    ],
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ],
+              ),
+            ),
+            Center(
+              child: Column(
+                mainAxisAlignment: .center,
+                children: [Text("Send page")],
+              ),
+            ),
+            Center(
+              child: Column(
+                mainAxisAlignment: .center,
+                children: [Text("Setting page")],
               ),
             ),
           ],
