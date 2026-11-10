@@ -30,6 +30,10 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final myController = TextEditingController();
+  static const List<Widget> _widgetOption = <Widget>[
+    Text("Page 1"),
+    Text("Page 2"),
+  ];
 
   @override
   void dispose() {
@@ -91,6 +95,22 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Column(
                 mainAxisAlignment: .center,
                 children: [
+                  BottomNavigationBar(
+                    items: const <BottomNavigationBarItem>[
+                      BottomNavigationBarItem(
+                        icon: Icon(Icons.home),
+                        label: "Home",
+                      ),
+                      BottomNavigationBarItem(
+                        icon: Icon(Icons.send),
+                        label: "Send",
+                      ),
+                      BottomNavigationBarItem(
+                        icon: Icon(Icons.settings),
+                        label: "Settings",
+                      ),
+                    ],
+                  ),
                   Container(
                     alignment: Alignment.center,
                     width: 400,
