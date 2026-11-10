@@ -30,10 +30,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final myController = TextEditingController();
-  static const List<Widget> _widgetOption = <Widget>[
-    Text("Page 1"),
-    Text("Page 2"),
-  ];
 
   @override
   void dispose() {
@@ -47,13 +43,6 @@ class _MyHomePageState extends State<MyHomePage> {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          bottom: const TabBar(
-            tabs: [
-              Tab(icon: Icon(Icons.home)),
-              Tab(icon: Icon(Icons.send)),
-              Tab(icon: Icon(Icons.settings)),
-            ],
-          ),
           leading: Builder(
             builder: (BuildContext context) {
               return IconButton(
@@ -89,105 +78,89 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
         ),
-        body: TabBarView(
-          children: [
-            Center(
-              child: Column(
-                mainAxisAlignment: .center,
-                children: [
-                  BottomNavigationBar(
-                    items: const <BottomNavigationBarItem>[
-                      BottomNavigationBarItem(
-                        icon: Icon(Icons.home),
-                        label: "Home",
-                      ),
-                      BottomNavigationBarItem(
-                        icon: Icon(Icons.send),
-                        label: "Send",
-                      ),
-                      BottomNavigationBarItem(
-                        icon: Icon(Icons.settings),
-                        label: "Settings",
-                      ),
-                    ],
+        body: Center(
+          child: Column(
+            mainAxisAlignment: .center,
+            children: [
+              BottomNavigationBar(
+                items: const <BottomNavigationBarItem>[
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.home),
+                    label: "Home",
                   ),
-                  Container(
-                    alignment: Alignment.center,
-                    width: 400,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-
-                    height: 400,
-                    padding: const EdgeInsets.all(16),
-                    margin: const EdgeInsets.all(10),
-                    child: Column(
-                      mainAxisAlignment: .center,
-                      spacing: 20,
-                      children: [
-                        Text(
-                          'Input text',
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.inter(
-                            fontSize: 30,
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        Row(
-                          spacing: 2,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Expanded(
-                              child: TextField(
-                                controller: myController,
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  labelText: 'Nama',
-                                  hintText: "Massukan nama anda...",
-                                ),
-                              ),
-                            ),
-                            IconButton(
-                              onPressed: () {
-                                final snackbar = SnackBar(
-                                  content: Text(
-                                    '${myController.text == "" ? "Silahkan isi nama anda" : myController.text}',
-                                  ),
-                                  action: SnackBarAction(
-                                    label: "Oke",
-                                    onPressed: () {
-                                      // Action
-                                    },
-                                  ),
-                                );
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(snackbar);
-                              },
-                              icon: const Icon(Icons.add),
-                              tooltip: "Add name",
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.send),
+                    label: "Send",
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.settings),
+                    label: "Settings",
                   ),
                 ],
               ),
-            ),
-            Center(
-              child: Column(
-                mainAxisAlignment: .center,
-                children: [Text("Send page")],
+              Container(
+                alignment: Alignment.center,
+                width: 400,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+
+                height: 400,
+                padding: const EdgeInsets.all(16),
+                margin: const EdgeInsets.all(10),
+                child: Column(
+                  mainAxisAlignment: .center,
+                  spacing: 20,
+                  children: [
+                    Text(
+                      'Input text',
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.inter(
+                        fontSize: 30,
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    Row(
+                      spacing: 2,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Expanded(
+                          child: TextField(
+                            controller: myController,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              labelText: 'Nama',
+                              hintText: "Massukan nama anda...",
+                            ),
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: () {
+                            final snackbar = SnackBar(
+                              content: Text(
+                                '${myController.text == "" ? "Silahkan isi nama anda" : myController.text}',
+                              ),
+                              action: SnackBarAction(
+                                label: "Oke",
+                                onPressed: () {
+                                  // Action
+                                },
+                              ),
+                            );
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(snackbar);
+                          },
+                          icon: const Icon(Icons.add),
+                          tooltip: "Add name",
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Center(
-              child: Column(
-                mainAxisAlignment: .center,
-                children: [Text("Setting page")],
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
