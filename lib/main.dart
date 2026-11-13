@@ -91,8 +91,8 @@ class _MyHomePageState extends State<MyHomePage> {
       body: SafeArea(
         child: AnimatedSwitcher(
           duration: const Duration(milliseconds: 350),
-          switchInCurve: Curves.easeIn,
-          switchOutCurve: Curves.easeOut,
+          switchInCurve: Curves.easeOutCubic,
+          switchOutCurve: Curves.easeInCubic,
           transitionBuilder: (child, animation) {
             final slide = Tween<Offset>(
               begin: const Offset(0.80, 0),
