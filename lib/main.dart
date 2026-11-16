@@ -160,93 +160,6 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Crave something tasty?',
-            style: GoogleFonts.poppins(
-              color: const Color(0xFF2A1B16),
-              fontSize: 28,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            'Fresh picks, rich flavors, and comfort bites made for your mood.',
-            style: GoogleFonts.poppins(
-              color: const Color(0xFF7E6057),
-              fontSize: 14,
-            ),
-          ),
-          const SizedBox(height: 22),
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.all(18),
-            decoration: BoxDecoration(
-              gradient: const LinearGradient(
-                colors: [Color(0xFFFFA26B), Color(0xFFEF6F4D)],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-              borderRadius: BorderRadius.circular(28),
-              boxShadow: const [
-                BoxShadow(
-                  color: Color(0x33EF6F4D),
-                  blurRadius: 18,
-                  offset: Offset(0, 12),
-                ),
-              ],
-            ),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Chef special',
-                        style: GoogleFonts.poppins(
-                          color: Colors.white.withOpacity(0.82),
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                          letterSpacing: 1.2,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        'Spicy ramen bowl',
-                        style: GoogleFonts.poppins(
-                          color: Colors.white,
-                          fontSize: 26,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        'Sweet chili noodles • 18 min',
-                        style: GoogleFonts.poppins(
-                          color: Colors.white.withOpacity(0.85),
-                          fontSize: 13,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  width: 82,
-                  height: 82,
-                  decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.2),
-                    borderRadius: BorderRadius.circular(24),
-                  ),
-                  child: const Icon(
-                    Icons.local_dining_rounded,
-                    color: Colors.white,
-                    size: 38,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 20),
           Container(
             width: double.infinity,
             padding: const EdgeInsets.all(18),
@@ -264,68 +177,12 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Add a craving',
-                  style: GoogleFonts.poppins(
-                    color: const Color(0xFF2A1B16),
-                    fontSize: 18,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
                 const SizedBox(height: 14),
                 Row(
                   children: [
-                    Expanded(
-                      child: TextField(
-                        controller: myController,
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: const Color(0xFFF7F2EE),
-                          hintText: 'What are you craving?',
-                          contentPadding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 16,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(16),
-                            borderSide: BorderSide.none,
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(16),
-                            borderSide: BorderSide.none,
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(16),
-                            borderSide: const BorderSide(
-                              color: Color(0xFFEF6F4D),
-                              width: 1.5,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
                     const SizedBox(width: 12),
                     Container(
-                      decoration: const BoxDecoration(
-                        color: Color(0xFFEF6F4D),
-                        shape: BoxShape.circle,
-                      ),
-                      child: IconButton(
-                        onPressed: () {
-                          final message = myController.text.trim().isEmpty
-                              ? 'Tell us what your taste buds want.'
-                              : myController.text;
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(message),
-                              behavior: SnackBarBehavior.floating,
-                              backgroundColor: const Color(0xFF2A1B16),
-                            ),
-                          );
-                        },
-                        icon: const Icon(Icons.add, color: Colors.white),
-                        tooltip: 'Add craving',
-                      ),
+                      decoration: const BoxDecoration(color: Color(0xFFEF6F4D)),
                     ),
                   ],
                 ),
