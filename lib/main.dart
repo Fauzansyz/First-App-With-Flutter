@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+
+import 'about_page.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
@@ -33,23 +36,31 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage>
+    with SingleTickerProviderStateMixin {
+  final PageController _pageController = PageController();
+
   final myController = TextEditingController();
   int _selectedIndex = 0;
 
   @override
   void dispose() {
+    _pageController.dispose();
     myController.dispose();
     super.dispose();
   }
 
+  void _onItemTapped(int index) {
+    _pageController.animateToPage(
+      index,
+      duration: const Duration(milliseconds: 320),
+      curve: Curves.easeInOut,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    final pages = [
-      _buildHomeBody(),
-      _buildFavoritesBody(),
-      _buildProfileBody(),
-    ];
+    final List<Widget> _pages = const [AboutPage()];
 
     return Scaffold(
       backgroundColor: const Color(0xFFF9F4F0),
@@ -89,25 +100,14 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       body: SafeArea(
-        child: AnimatedSwitcher(
-          duration: const Duration(milliseconds: 350),
-          switchInCurve: Curves.easeOutCubic,
-          switchOutCurve: Curves.easeInCubic,
-          transitionBuilder: (child, animation) {
-            final slide = Tween<Offset>(
-              begin: const Offset(0.80, 0),
-              end: Offset.zero,
-            ).animate(animation);
-
-            return FadeTransition(
-              opacity: animation,
-              child: SlideTransition(position: slide, child: child),
-            );
+        child: PageView(
+          controller: _pageController,
+          onPageChanged: (state) {
+            setState(() {
+              _selectedIndex = state;
+            });
           },
-          child: KeyedSubtree(
-            child: pages[_selectedIndex],
-            key: ValueKey(_selectedIndex),
-          ),
+          children: _pages,
         ),
       ),
 

@@ -17,7 +17,8 @@ class AboutPage extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(24),
           child: Text(
-            'A cozy food app with a warm, delicious vibe.',
+            'This is about pages.',
+
             textAlign: TextAlign.center,
             style: GoogleFonts.poppins(
               fontSize: 24,
